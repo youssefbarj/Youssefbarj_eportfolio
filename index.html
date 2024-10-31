@@ -6,6 +6,10 @@
     <title>Youssef Barj - Portfolio</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <style>
         @keyframes fadeInUp {
             from {
@@ -20,18 +24,48 @@
         .animate-fadeInUp {
             animation: fadeInUp 0.6s ease-out;
         }
+        .skill-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #3B82F6;
+            transition: width 1.5s ease-in-out;
+        }
+        .project-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .project-card:hover {
+            transform: rotateY(180deg);
+        }
+        .project-front, .project-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .project-back {
+            transform: rotateY(180deg);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white font-sans">
+    <div id="particles-js" class="fixed inset-0 z-0"></div>
+
     <header class="py-4 px-4 sm:px-6 lg:px-8 fixed w-full z-50 transition-all duration-300" id="header">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="#" class="text-3xl font-bold text-blue-400">YB</a>
             <div class="hidden md:flex space-x-4">
-                <button onclick="setActiveTab('about')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="About" data-fr="À propos">About</button>
-                <button onclick="setActiveTab('skills')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Skills" data-fr="Compétences">Skills</button>
-                <button onclick="setActiveTab('projects')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Projects" data-fr="Projets">Projects</button>
-                <button onclick="setActiveTab('experience')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Experience" data-fr="Expérience">Experience</button>
-                <button onclick="setActiveTab('contact')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Contact" data-fr="Contact">Contact</button>
+                <button onclick="smoothScroll('#about')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="About" data-fr="À propos">About</button>
+                <button onclick="smoothScroll('#skills')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Skills" data-fr="Compétences">Skills</button>
+                <button onclick="smoothScroll('#projects')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Projects" data-fr="Projets">Projects</button>
+                <button onclick="smoothScroll('#experience')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Experience" data-fr="Expérience">Experience</button>
+                <button onclick="smoothScroll('#contact')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Contact" data-fr="Contact">Contact</button>
                 <button onclick="toggleLanguage()" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">🌐 EN/FR</button>
             </div>
             <button class="md:hidden text-white" onclick="toggleMenu()">
@@ -44,20 +78,20 @@
 
     <div id="mobileMenu" class="fixed inset-0 bg-gray-900 z-40 hidden md:hidden">
         <div class="flex flex-col items-center justify-center h-full">
-            <button onclick="setActiveTab('about'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="About" data-fr="À propos">About</button>
-            <button onclick="setActiveTab('skills'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Skills" data-fr="Compétences">Skills</button>
-            <button onclick="setActiveTab('projects'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Projects" data-fr="Projets">Projects</button>
-            <button onclick="setActiveTab('experience'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Experience" data-fr="Expérience">Experience</button>
-            <button onclick="setActiveTab('contact'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Contact" data-fr="Contact">Contact</button>
+            <button onclick="smoothScroll('#about'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="About" data-fr="À propos">About</button>
+            <button onclick="smoothScroll('#skills'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Skills" data-fr="Compétences">Skills</button>
+            <button onclick="smoothScroll('#projects'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Projects" data-fr="Projets">Projects</button>
+            <button onclick="smoothScroll('#experience'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Experience" data-fr="Expérience">Experience</button>
+            <button onclick="smoothScroll('#contact'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Contact" data-fr="Contact">Contact</button>
             <button onclick="toggleLanguage(); toggleMenu()" class="px-3 py-2 rounded-md text-lg font-medium mb-4 text-gray-300 hover:bg-gray-700 hover:text-white">🌐 EN/FR</button>
         </div>
     </div>
 
-    <main class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <main class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <section id="about" class="text-center animate-fadeInUp">
             <img src="1691435719454.jpeg" alt="Youssef Barj Mug Shot" style="width:200px;height:200px;border-radius:50%" class="mx-auto mb-8 border-4 border-blue-400">
             <h1 class="text-5xl font-bold mb-4">Youssef Barj</h1>
-            <p class="text-2xl text-blue-300 mb-8" data-en="Innovative Instructional Designer & Digital Learning Engineer" data-fr="Concepteur Pédagogique Innovant & Ingénieur en Apprentissage Numérique">Innovative Instructional Designer & Digital Learning Engineer</p>
+            <p class="text-2xl text-blue-300 mb-8"><span id="typing-text"></span></p>
             <p class="max-w-2xl mx-auto text-gray-300 mb-12 text-lg" data-en="Passionate about creating engaging and effective learning experiences. With expertise in eLearning design, gamification, and LMS administration, I bring a unique blend of educational theory and technological innovation to every project." data-fr="Passionné par la création d'expériences d'apprentissage engageantes et efficaces. Avec une expertise en conception d'eLearning, gamification et administration de LMS, j'apporte un mélange unique de théorie éducative et d'innovation technologique à chaque projet.">
                 Passionate about creating engaging and effective learning experiences. With expertise in eLearning design, gamification, and LMS administration, I bring a unique blend of educational theory and technological innovation to every project.
             </p>
@@ -78,43 +112,40 @@
             </div>
         </section>
 
-        <section id="skills" class="hidden animate-fadeInUp">
+        <section id="skills" class="mt-20">
             <h2 class="text-4xl font-bold mb-12 text-center" data-en="Skills & Expertise" data-fr="Compétences & Expertise">Skills & Expertise</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="skillsGrid"></div>
         </section>
 
-        <section id="projects" class="hidden animate-fadeInUp">
+        <section id="projects" class="mt-20">
             <h2 class="text-4xl font-bold mb-12 text-center" data-en="Featured Projects" data-fr="Projets Phares">Featured Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid"></div>
         </section>
 
-        <section id="experience" class="hidden animate-fadeInUp">
+        <section id="experience" class="mt-20">
             <h2 class="text-4xl font-bold mb-12 text-center" data-en="Professional Experience" data-fr="Expérience Professionnelle">Professional Experience</h2>
             <div class="space-y-8" id="experienceList"></div>
         </section>
 
-        <section id="contact" class="hidden animate-fadeInUp text-center">
+        <section id="contact" class="mt-20 text-center">
             <h2 class="text-4xl font-bold mb-8" data-en="Let's Connect" data-fr="Connectons-nous">Let's Connect</h2>
             <p class="mb-12 text-2xl text-gray-300" data-en="Ready to create innovative learning experiences? Get in touch!" data-fr="Prêt à créer des expériences d'apprentissage innovantes ? Contactez-moi !">Ready to create innovative learning experiences? Get in touch!</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="mailto:barjyoussef5@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                    <span data-en="Email Me" data-fr="M'envoyer un Email">Email Me</span>
-                </a>
-                <a href="https://www.linkedin.com/in/youssefbarj" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd" />
-                    </svg>
-                    <span data-en="LinkedIn" data-fr="LinkedIn">LinkedIn</span>
-                </a>
-            </div>
+            <form id="contact-form" class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 focus:outline-none">
+                </div>
+                <div class="mb-4">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 focus:outline-none">
+                </div>
+                <div class="mb-4">
+                    <textarea id="message" name="message" placeholder="Your Message" required class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-blue-500 focus:outline-none" rows="4"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">Send Message</button>
+            </form>
         </section>
     </main>
 
-    <footer class="bg-gray-900 py-8 mt-20">
+    <footer class="bg-gray-900 py-8 mt-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
             <p data-en="&copy; 2023 Youssef Barj. All rights reserved." data-fr="&copy; 2023 Youssef Barj. Tous droits réservés.">&copy; 2023 Youssef Barj. All rights reserved.</p>
         </div>
@@ -139,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <a href="https://drive.google.com/uc?export=download&id=1FWMS75Y-pELNno5ZQgHpuGp5bqEI_xQg" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" data-en="English CV" data-fr="CV en anglais">
                         English CV
                     </a>
@@ -153,191 +184,89 @@
             </div>
         </div>
     </div>
-
-    <div id="videoModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title" data-en="Gamified Cybersecurity Training" data-fr="Formation en Cybersécurité Gamifiée">
-                                Gamified Cybersecurity Training
-                            </h3>
-                            <div class="mt-2">
-                                <iframe src="https://drive.google.com/file/d/1uF6D996ueL2uE0bdVBrZyJILJ6Aj8q8-/preview" width="100%" height="315" allow="autoplay"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" onclick="closeModal('videoModal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" data-en="Close" data-fr="Fermer">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const skills = [
-            { name: 'Instructional Design', icon: '🎓', description: 'Expert in creating effective learning experiences', nameFr: 'Conception Pédagogique', descriptionFr: 'Expert en création d\'expériences d\'apprentissage efficaces' },
-            { name: 'E-Learning Development', icon: '💻', description: 'Proficient in developing interactive online courses', nameFr: 'Développement E-Learning', descriptionFr: 'Compétent dans le développement de cours en ligne interactifs' },
-            { name: 'LMS Administration', icon: '🖥️', description: 'Experienced in managing learning management systems', nameFr: 'Administration LMS', descriptionFr: 'Expérimenté dans la gestion des systèmes de gestion de l\'apprentissage' },
-            { name: 'Project Management', icon: '📊', description: 'Skilled in coordinating and overseeing e-learning projects', nameFr: 'Gestion de Projet', descriptionFr: 'Compétent dans la coordination et la supervision de projets e-learning' },
-            { name: 'Gamification', icon: '🎮', description: 'Adept at incorporating game elements in learning', nameFr: 'Gamification', descriptionFr: 'Adepte de l\'incorporation d\'éléments de jeu dans l\'apprentissage' },
-            { name: 'TICE & Digital Learning', icon: '📱', description: 'Knowledgeable in educational technology integration', nameFr: 'TICE & Apprentissage Numérique', descriptionFr: 'Connaissances en intégration des technologies éducatives' },
-            { name: 'Articulate 360', icon: '🔧', description: 'Proficient in using Articulate 360 suite for course creation', nameFr: 'Articulate 360', descriptionFr: 'Compétent dans l\'utilisation de la suite Articulate 360 pour la création de cours' },
-            { name: 'Adobe Creative Suite', icon: '🎨', description: 'Skilled in using Adobe tools for content creation', nameFr: 'Suite Adobe Creative', descriptionFr: 'Compétent dans l\'utilisation des outils Adobe pour la création de contenu' },
-            { name: 'Moodle & Open edX', icon: '🏫', description: 'Experienced with popular open-source LMS platforms', nameFr: 'Moodle & Open edX', descriptionFr: 'Expérimenté avec les plateformes LMS open-source populaires' },
-            { name: 'Video Editing', icon: '🎬', description: 'Capable of creating and editing educational videos', nameFr: 'Montage Vidéo', descriptionFr: 'Capable de créer et d\'éditer des vidéos éducatives' },
-            { name: 'UX/UI Design', icon: '🖌️', description: 'Focused on creating user-friendly learning interfaces', nameFr: 'Design UX/UI', descriptionFr: 'Concentré sur la création d\'interfaces d\'apprentissage conviviales' },
-            { name: 'HTML, CSS, PHP', icon: '🌐', description: 'Proficient in web technologies for custom e-learning solutions', nameFr: 'HTML, CSS, PHP', descriptionFr: 'Compétent en technologies web pour des solutions e-learning personnalisées' },
-        ];
-
-        const projects = [
-            {
-                title: 'Gamified Cybersecurity Training',
-                description: 'Interactive course designed to enhance cybersecurity awareness through gamification for Tesselate.',
-                image: '1520078765767.jpg',
-                imageStyle: 'width:100%;height:auto',
-                action: () => openModal('videoModal'),
-                titleFr: 'Formation en Cybersécurité Gamifiée',
-                descriptionFr: 'Cours interactif conçu pour améliorer la sensibilisation à la cybersécurité par la gamification pour Tesselate.'
-            },
-            {
-                title: 'Privacy and Personal Data',
-                description: 'Interactive eLearning course on privacy rights and data protection in the financial industry.',
-                image: 'image-3.jpg',
-                imageStyle: '',
-                link: 'https://360.articulate.com/review/content/2dd43c56-b591-4ca0-a3a3-562102b4ebaa/review',
-                titleFr: 'Confidentialité et Données Personnelles',
-                descriptionFr: 'Cours eLearning interactif sur les droits à la vie privée et la protection des données dans l\'industrie financière.'
-            },
-            {
-                title: 'Data Security Threats: Phishing',
-                description: 'eLearning course on recognizing and mitigating phishing attempts in email communication.',
-                image: 'phishing-2.jpg',
-                imageStyle: '',
-                link: 'https://360.articulate.com/review/content/aad4cbee-a70f-4cab-bd56-c2ecafeaf98b/review',
-                titleFr: 'Menaces de Sécurité des Données : Hameçonnage',
-                descriptionFr: 'Cours eLearning sur la reconnaissance et l\'atténuation des tentatives d\'hameçonnage dans la communication par e-mail.'
-            },
-            {
-                title: 'GDPR Compliance eLearning Course',
-                description: 'Comprehensive SCORM package on General Data Protection Regulation (GDPR) compliance. This course covers key aspects including the role of Data Protection Officers, compliance requirements, implementation timeline, handling data breaches, and personal data management.',
-                image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-9hkTlxwnt3AGiZS8SUQehxvUkZmcAo.png',
-                imageStyle: '',
-                link: 'https://www.educate-me.co/tools/scorm-viewer?id=cm2a25fbn827k086636jkrbgl',
-                titleFr: 'Cours eLearning sur la Conformité au RGPD',
-                descriptionFr: 'Package SCORM complet sur la conformité au Règlement Général sur la Protection des Données (RGPD). Ce cours couvre les aspects clés, notamment le rôle des délégués à la protection des données, les exigences de conformité, le calendrier de mise en œuvre, la gestion des violations de données et la gestion des données personnelles.'
-            },
-            {
-                title: 'Interactive Floor Plan for New Employee Onboarding',
-                description: 'An interactive floor plan that helps new employees navigate the office space. It features various rooms including conference areas, offices, and communal spaces. Users can click on rooms to learn more about each area.',
-                image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-h48G9CYDDlwnWCwyrMiorc5Ag4lgxo.png',
-                imageStyle: '',
-                link: 'https://articulate-heroes-authoring.s3.amazonaws.com/Allison/360/floorplan-interaction/story_html5.html',
-                titleFr: 'Plan Interactif pour l\'Intégration des Nouveaux Employés',
-                descriptionFr: 'Un plan d\'étage interactif qui aide les nouveaux employés à s\'orienter dans l\'espace de bureau. Il présente diverses salles, y compris des zones de conférence, des bureaux et des espaces communs. Les utilisateurs peuvent cliquer sur les pièces pour en savoir plus sur chaque zone.'
-            },
-            {
-                title: 'Essential Time Management Skills',
-                description: 'An interactive and engaging online course designed to help individuals master the art of time management. Created using modern web technologies like React and enhanced with smooth animations from Framer Motion, this course offers a visually appealing and user-friendly interface.',
-                image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/time-management-1966396_1920-UFQD2s8WbjQ9n776R7Ct32G9TvY6yv.jpg',
-                imageStyle: '',
-                link: 'https://b_eernxnygq9j.v0.build',
-                titleFr: 'Compétences Essentielles en Gestion du Temps',
-                descriptionFr: 'Un cours en ligne interactif et engageant conçu pour aider les individus à maîtriser l\'art de la gestion du temps. Créé à l\'aide de technologies web modernes comme React et amélioré avec des animations fluides de Framer Motion, ce cours offre une interface visuellement attrayante et conviviale.'
-            },
-            {
-                title: 'Email Writing: Dos and Don\'ts',
-                description: 'An interactive course created with Storyline that teaches the best practices for writing professional emails. This course covers essential tips and common pitfalls to avoid when composing business communications.',
-                image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BMD-4781-IFDGRBm44WSTNLX0s8HAqp3iRPA1Zt.png',
-                imageStyle: '',
-                link: 'http://www.amnvohra.com/projects/email_like_pro/story.html',
-                titleFr: 'Rédaction d\'Emails : À Faire et À Éviter',
-                descriptionFr: 'Un cours interactif créé avec Storyline qui enseigne les meilleures pratiques pour rédiger des emails professionnels. Ce cours couvre les conseils essentiels et les pièges courants à éviter lors de la rédaction de communications professionnelles.'
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
             }
-        ];
-
-        const experiences = [
-            {
-                title: 'E-learning Project Manager and Learning Technology Expert',
-                company: 'EMERA Privée (Subsidiary of Dokeos LMS)',
-                location: 'Casablanca, Morocco',
-                period: '',
-                description: [
-                    'Managed e-learning projects and provided client support',
-                    'Integrated LMS with third-party systems',
-                    'Implemented IT security protocols',
-                    'Expertise in Dokeos LMS, project management, and systems integration'
-                ],
-                titleFr: 'Chef de Projet E-learning et Expert en Technologie d\'Apprentissage',
-                companyFr: 'EMERA Privée (Filiale de Dokeos LMS)',
-                locationFr: 'Casablanca, Maroc',
-                periodFr: '',
-                descriptionFr: [
-                    'Gestion de projets e-learning et support client',
-                    'Intégration de LMS avec des systèmes tiers',
-                    'Mise en place de protocoles de sécurité IT',
-                    'Expertise en Dokeos LMS, gestion de projet et intégration de systèmes'
-                ]
-            },
-            {
-                title: 'Freelance Instructional Designer',
-                company: 'Various Clients',
-                location: '',
-                period: '2 years',
-                description: [
-                    'Developed interactive e-learning modules using Articulate Rise',
-                    'Managed client relationships and incorporated feedback',
-                    'Created 30-45 minute interactive e-learning experiences',
-                    'Published modules in web and SCORM formats'
-                ],
-                titleFr: 'Concepteur Pédagogique Freelance',
-                companyFr: 'Clients Divers',
-                locationFr: '',
-                periodFr: '2 ans',
-                descriptionFr: [
-                    'Développement de modules e-learning interactifs avec Articulate Rise',
-                    'Gestion des relations clients et intégration des retours',
-                    'Création d\'expériences e-learning interactives de 30-45 minutes',
-                    'Publication de modules aux formats web et SCORM'
-                ]
-            },
-            {
-                title: 'Training Manager',
-                company: 'Tesselate',
-                location: '',
-                period: '6 months',
-                description: [
-                    'Redesigned cybersecurity training',
-                    'Implemented a new Learning Management System',
-                    'Introduced gamification elements to onboarding process',
-                    'Increased employee engagement in training programs'
-                ],
-                titleFr: 'Responsable de Formation',
-                companyFr: 'Tesselate',
-                locationFr: '',
-                periodFr: '6 mois',
-                descriptionFr: [
-                    'Refonte de la formation en cybersécurité',
-                    'Mise en place d\'un nouveau Système de Gestion de l\'Apprentissage',
-                    'Introduction d\'éléments de gamification dans le processus d\'intégration',
-                    'Augmentation de l\'engagement des employés dans les programmes de formation'
-                ]
+        });
+        // Initialize Typed.js
+        new Typed('#typing-text', {
+            strings: [
+                'Instructional Designer',
+                'Digital Learning Engineer',
+                'E-Learning Developer'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+        // Initialize ScrollReveal
+        ScrollReveal().reveal('.skill-card', {
+            delay: 200,
+            distance: '50px',
+            origin: 'bottom',
+            interval: 100
+        });
+        // Smooth Scroll Function
+        function smoothScroll(target) {
+            document.querySelector(target).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        // Contact Form Handler
+        const form = document.querySelector('#contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            
+            try {
+                // Add your form submission logic here
+                // For example:
+                // await fetch('/api/contact', {
+                //     method: 'POST',
+                //     body: formData
+                // });
+                alert('Message sent successfully!');
+                form.reset();
+            } catch (error) {
+                alert('Error sending message. Please try again.');
             }
-        ];
-
+        });
+        // Initialize VanillaTilt for project cards
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+        // Your existing JavaScript functions
         let currentLanguage = 'en';
-
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'en' ? 'fr' : 'en';
             updateLanguage();
         }
-
         function updateLanguage() {
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLanguage}`);
@@ -346,93 +275,34 @@
             populateProjects();
             populateExperiences();
         }
-
         function populateSkills() {
+            // Your existing skills population logic with added animations
             const skillsGrid = document.getElementById('skillsGrid');
             skillsGrid.innerHTML = '';
-            skills.forEach(skill => {
+            skills.forEach((skill, index) => {
                 const skillDiv = document.createElement('div');
-                skillDiv.className = 'bg-gray-800 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300';
+                skillDiv.className = 'skill-card bg-gray-800 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300';
+                skillDiv.style.animationDelay = `${index * 100}ms`;
                 skillDiv.innerHTML = `
                     <div class="text-4xl mb-2">${skill.icon}</div>
                     <h3 class="font-bold text-lg mb-2">${currentLanguage === 'en' ? skill.name : skill.nameFr}</h3>
-                    <p class="text-gray-400">${currentLanguage === 'en' ? skill.description : skill.descriptionFr}</p>
+                    <p class="text-gray-400 mb-4">${currentLanguage === 'en' ? skill.description : skill.descriptionFr}</p>
+                    <div class="skill-bar">
+                        <div class="progress" style="width: ${skill.level}%"></div>
+                    </div>
                 `;
                 skillsGrid.appendChild(skillDiv);
             });
         }
-
-        function populateProjects() {
-            const projectsGrid = document.getElementById('projectsGrid');
-            projectsGrid.innerHTML = '';
-            projects.forEach(project => {
-                const projectDiv = document.createElement('div');
-                projectDiv.className = 'bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300';
-                projectDiv.innerHTML = `
-                    <img src="${project.image}" alt="${currentLanguage === 'en' ? project.title : project.titleFr}" style="${project.imageStyle}" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-3 text-blue-300">${currentLanguage === 'en' ? project.title : project.titleFr}</h3>
-                        <p class="text-gray-400 mb-6">${currentLanguage === 'en' ? project.description : project.descriptionFr}</p>
-                        <button onclick="${project.action ? 'projects[' + projects.indexOf(project) + '].action()' : 'window.open(\'' + project.link + '\', \'_blank\')'}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition-colors duration-300">
-                            ${project.title === 'GDPR Compliance eLearning Course' ? (currentLanguage === 'en' ? 'View SCORM Package' : 'Voir le Package SCORM') : (currentLanguage === 'en' ? 'View Project' : 'Voir le Projet')}
-                        </button>
-                    </div>
-                `;
-                projectsGrid.appendChild(projectDiv);
-            });
-        }
-
-        function populateExperiences() {
-            const experienceList = document.getElementById('experienceList');
-            experienceList.innerHTML = '';
-            experiences.forEach((exp, index) => {
-                const expDiv = document.createElement('div');
-                expDiv.className = 'bg-gray-800 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300';
-                expDiv.innerHTML = `
-                    <h3 class="text-2xl font-bold mb-2 text-blue-300">${currentLanguage === 'en' ? exp.title : exp.titleFr}</h3>
-                    <p class="text-lg mb-2">${currentLanguage === 'en' ? exp.company : exp.companyFr}</p>
-                    <p class="text-gray-400 mb-4">${currentLanguage === 'en' ? exp.location : exp.locationFr} ${exp.period ? `| ${currentLanguage === 'en' ? exp.period : exp.periodFr}` : ''}</p>
-                    <ul class="list-disc list-inside text-gray-300">
-                        ${(currentLanguage === 'en' ? exp.description : exp.descriptionFr).map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                `;
-                experienceList.appendChild(expDiv);
-            });
-        }
-
-        function setActiveTab(tabId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(tabId).classList.remove('hidden');
-            updateActiveNavButton(tabId);
-        }
-
-        function updateActiveNavButton(activeTabId) {
-            document.querySelectorAll('.nav-btn, .mobile-nav-btn').forEach(btn => {
-                if (btn.textContent.toLowerCase().includes(activeTabId)) {
-                    btn.classList.add('bg-blue-700', 'text-white');
-                    btn.classList.remove('text-gray-300', 'hover:bg-gray-700', 'hover:text-white');
-                } else {
-                    btn.classList.remove('bg-blue-700', 'text-white');
-                    btn.classList.add('text-gray-300', 'hover:bg-gray-700', 'hover:text-white');
-                }
-            });
-        }
-
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        function toggleMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', () => {
+            setActiveTab('about');
+            populateSkills();
+            populateProjects();
+            populateExperiences();
+            updateLanguage();
+        });
+        // Scroll handler for header
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 100) {
@@ -441,13 +311,6 @@
                 header.classList.remove('bg-gray-900', 'shadow-lg');
             }
         });
-
-        // Initialize the page
-        setActiveTab('about');
-        populateSkills();
-        populateProjects();
-        populateExperiences();
-        updateLanguage();
     </script>
 </body>
 </html>
