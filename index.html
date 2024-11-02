@@ -20,6 +20,17 @@
         .animate-fadeInUp {
             animation: fadeInUp 0.6s ease-out;
         }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        .animate-pulse {
+            animation: pulse 1.5s infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white font-sans">
@@ -29,11 +40,8 @@
             <div class="hidden md:flex space-x-4">
                 <button onclick="setActiveTab('about')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="About" data-fr="À propos">About</button>
                 <button onclick="setActiveTab('skills')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Skills" data-fr="Compétences">Skills</button>
-                <button onclick="setActiveTab('skills-assessment')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Skills Assessment" data-fr="Évaluation des Compétences">Skills Assessment</button>
                 <button onclick="setActiveTab('projects')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Projects" data-fr="Projets">Projects</button>
                 <button onclick="setActiveTab('experience')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Experience" data-fr="Expérience">Experience</button>
-                <button onclick="setActiveTab('testimonials')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Testimonials" data-fr="Témoignages">Testimonials</button>
-                <button onclick="setActiveTab('certifications')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Certifications" data-fr="Certifications">Certifications</button>
                 <button onclick="setActiveTab('contact')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium" data-en="Contact" data-fr="Contact">Contact</button>
                 <button onclick="toggleLanguage()" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">🌐 EN/FR</button>
             </div>
@@ -49,11 +57,8 @@
         <div class="flex flex-col items-center justify-center h-full">
             <button onclick="setActiveTab('about'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="About" data-fr="À propos">About</button>
             <button onclick="setActiveTab('skills'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Skills" data-fr="Compétences">Skills</button>
-            <button onclick="setActiveTab('skills-assessment'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Skills Assessment" data-fr="Évaluation des Compétences">Skills Assessment</button>
             <button onclick="setActiveTab('projects'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Projects" data-fr="Projets">Projects</button>
             <button onclick="setActiveTab('experience'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Experience" data-fr="Expérience">Experience</button>
-            <button onclick="setActiveTab('testimonials'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Testimonials" data-fr="Témoignages">Testimonials</button>
-            <button onclick="setActiveTab('certifications'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Certifications" data-fr="Certifications">Certifications</button>
             <button onclick="setActiveTab('contact'); toggleMenu()" class="mobile-nav-btn px-3 py-2 rounded-md text-lg font-medium mb-4" data-en="Contact" data-fr="Contact">Contact</button>
             <button onclick="toggleLanguage(); toggleMenu()" class="px-3 py-2 rounded-md text-lg font-medium mb-4 text-gray-300 hover:bg-gray-700 hover:text-white">🌐 EN/FR</button>
         </div>
@@ -61,7 +66,7 @@
 
     <main class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <section id="about" class="text-center animate-fadeInUp">
-            <img src="1691435719454.jpeg" alt="Youssef Barj Mug Shot" style="width:200px;height:200px;border-radius:50%" class="mx-auto mb-8 border-4 border-blue-400">
+            <img src="1691435719454.jpeg" alt="Youssef Barj Mug Shot" style="width:200px;height:200px;border-radius:50%" class="mx-auto mb-8 border-4 border-blue-400 animate-pulse">
             <h1 class="text-5xl font-bold mb-4">Youssef Barj</h1>
             <p class="text-2xl text-blue-300 mb-8" data-en="Innovative Instructional Designer & Digital Learning Engineer" data-fr="Concepteur Pédagogique Innovant & Ingénieur en Apprentissage Numérique">Innovative Instructional Designer & Digital Learning Engineer</p>
             <p class="max-w-2xl mx-auto text-gray-300 mb-12 text-lg" data-en="Passionate about creating engaging and effective learning experiences. With expertise in eLearning design, gamification, and LMS administration, I bring a unique blend of educational theory and technological innovation to every project." data-fr="Passionné par la création d'expériences d'apprentissage engageantes et efficaces. Avec une expertise en conception d'eLearning, gamification et administration de LMS, j'apporte un mélange unique de théorie éducative et d'innovation technologique à chaque projet.">
@@ -89,11 +94,6 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="skillsGrid"></div>
         </section>
 
-        <section id="skills-assessment" class="hidden animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-en="Skills Assessment" data-fr="Évaluation des Compétences">Skills Assessment</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="skillsAssessmentGrid"></div>
-        </section>
-
         <section id="projects" class="hidden animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center" data-en="Featured Projects" data-fr="Projets Phares">Featured Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid"></div>
@@ -102,16 +102,6 @@
         <section id="experience" class="hidden animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center" data-en="Professional Experience" data-fr="Expérience Professionnelle">Professional Experience</h2>
             <div class="space-y-8" id="experienceList"></div>
-        </section>
-
-        <section id="testimonials" class="hidden animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-en="Testimonials" data-fr="Témoignages">Testimonials</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="testimonialsGrid"></div>
-        </section>
-
-        <section id="certifications" class="hidden animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center" data-en="Professional Certifications" data-fr="Certifications Professionnelles">Professional Certifications</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="certificationsGrid"></div>
         </section>
 
         <section id="contact" class="hidden animate-fadeInUp text-center">
@@ -127,7 +117,7 @@
                 </a>
                 <a href="https://www.linkedin.com/in/youssefbarj" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd" />
                     </svg>
                     <span data-en="LinkedIn" data-fr="LinkedIn">LinkedIn</span>
                 </a>
@@ -225,9 +215,7 @@
                 imageStyle: 'width:100%;height:auto',
                 action: () => openModal('videoModal'),
                 titleFr: 'Formation en Cybersécurité Gamifiée',
-                descriptionFr: 'Cours interactif conçu pour améliorer la sensibilisation à la cybersécurité par la gamification pour Tesselate.',
-                technologies: ['Articulate Storyline', 'Adobe Photoshop', 'JavaScript'],
-                outcomes: ['Increased employee engagement by 40%', 'Improved knowledge retention by 35%']
+                descriptionFr: 'Cours interactif conçu pour améliorer la sensibilisation à la cybersécurité par la gamification pour Tesselate.'
             },
             {
                 title: 'Privacy and Personal Data',
@@ -236,9 +224,7 @@
                 imageStyle: '',
                 link: 'https://360.articulate.com/review/content/2dd43c56-b591-4ca0-a3a3-562102b4ebaa/review',
                 titleFr: 'Confidentialité et Données Personnelles',
-                descriptionFr: 'Cours eLearning interactif sur les droits à la vie privée et la protection des données dans l\'industrie financière.',
-                technologies: ['Articulate Rise', 'Adobe Illustrator'],
-                outcomes: ['98% completion rate', 'Positive feedback from 95% of learners']
+                descriptionFr: 'Cours eLearning interactif sur les droits à la vie privée et la protection des données dans l\'industrie financière.'
             },
             {
                 title: 'Data Security Threats: Phishing',
@@ -247,9 +233,7 @@
                 imageStyle: '',
                 link: 'https://360.articulate.com/review/content/aad4cbee-a70f-4cab-bd56-c2ecafeaf98b/review',
                 titleFr: 'Menaces de Sécurité des Données : Hameçonnage',
-                descriptionFr: 'Cours eLearning sur la reconnaissance et l\'atténuation des tentatives d\'hameçonnage dans la communication par e-mail.',
-                technologies: ['Articulate Storyline', 'Adobe After Effects'],
-                outcomes: ['Reduced phishing incidents by 60%', 'Increased reporting of suspicious emails by 75%']
+                descriptionFr: 'Cours eLearning sur la reconnaissance et l\'atténuation des tentatives d\'hameçonnage dans la communication par e-mail.'
             },
             {
                 title: 'GDPR Compliance eLearning Course',
@@ -258,9 +242,7 @@
                 imageStyle: '',
                 link: 'https://www.educate-me.co/tools/scorm-viewer?id=cm2a25fbn827k086636jkrbgl',
                 titleFr: 'Cours eLearning sur la Conformité au RGPD',
-                              descriptionFr: 'Package SCORM complet sur la conformité au Règlement Général sur la Protection des Données (RGPD). Ce cours couvre les aspects clés, notamment le rôle des délégués à la protection des données, les exigences de conformité, le calendrier de mise en œuvre, la gestion des violations de données et la gestion des données personnelles.',
-                technologies: ['Articulate Storyline', 'SCORM', 'Adobe Photoshop'],
-                outcomes: ['100% compliance with GDPR training requirements', 'Improved data handling practices across the organization']
+                descriptionFr: 'Package SCORM complet sur la conformité au Règlement Général sur la Protection des Données (RGPD). Ce cours couvre les aspects clés, notamment le rôle des délégués à la protection des données, les exigences de conformité, le calendrier de mise en œuvre, la gestion des violations de données et la gestion des données personnelles.'
             },
             {
                 title: 'Interactive Floor Plan for New Employee Onboarding',
@@ -269,9 +251,7 @@
                 imageStyle: '',
                 link: 'https://articulate-heroes-authoring.s3.amazonaws.com/Allison/360/floorplan-interaction/story_html5.html',
                 titleFr: 'Plan Interactif pour l\'Intégration des Nouveaux Employés',
-                descriptionFr: 'Un plan d\'étage interactif qui aide les nouveaux employés à s\'orienter dans l\'espace de bureau. Il présente diverses salles, y compris des zones de conférence, des bureaux et des espaces communs. Les utilisateurs peuvent cliquer sur les pièces pour en savoir plus sur chaque zone.',
-                technologies: ['Articulate Storyline', 'Adobe Illustrator'],
-                outcomes: ['Reduced new employee orientation time by 30%', 'Increased new hire satisfaction scores by 25%']
+                descriptionFr: 'Un plan d\'étage interactif qui aide les nouveaux employés à s\'orienter dans l\'espace de bureau. Il présente diverses salles, y compris des zones de conférence, des bureaux et des espaces communs. Les utilisateurs peuvent cliquer sur les pièces pour en savoir plus sur chaque zone.'
             },
             {
                 title: 'Essential Time Management Skills',
@@ -280,9 +260,7 @@
                 imageStyle: '',
                 link: 'https://b_eernxnygq9j.v0.build',
                 titleFr: 'Compétences Essentielles en Gestion du Temps',
-                descriptionFr: 'Un cours en ligne interactif et engageant conçu pour aider les individus à maîtriser l\'art de la gestion du temps. Créé à l\'aide de technologies web modernes comme React et amélioré avec des animations fluides de Framer Motion, ce cours offre une interface visuellement attrayante et conviviale.',
-                technologies: ['React', 'Framer Motion', 'CSS3'],
-                outcomes: ['Improved time management skills for 85% of participants', 'Increased productivity reported by 70% of learners']
+                descriptionFr: 'Un cours en ligne interactif et engageant conçu pour aider les individus à maîtriser l\'art de la gestion du temps. Créé à l\'aide de technologies web modernes comme React et amélioré avec des animations fluides de Framer Motion, ce cours offre une interface visuellement attrayante et conviviale.'
             },
             {
                 title: 'Email Writing: Dos and Don\'ts',
@@ -291,9 +269,7 @@
                 imageStyle: '',
                 link: 'http://www.amnvohra.com/projects/email_like_pro/story.html',
                 titleFr: 'Rédaction d\'Emails : À Faire et À Éviter',
-                descriptionFr: 'Un cours interactif créé avec Storyline qui enseigne les meilleures pratiques pour rédiger des emails professionnels. Ce cours couvre les conseils essentiels et les pièges courants à éviter lors de la rédaction de communications professionnelles.',
-                technologies: ['Articulate Storyline', 'Adobe Photoshop'],
-                outcomes: ['Improved email communication clarity by 50%', 'Reduced email-related misunderstandings by 40%']
+                descriptionFr: 'Un cours interactif créé avec Storyline qui enseigne les meilleures pratiques pour rédiger des emails professionnels. Ce cours couvre les conseils essentiels et les pièges courants à éviter lors de la rédaction de communications professionnelles.'
             }
         ];
 
@@ -302,7 +278,7 @@
                 title: 'E-learning Project Manager and Learning Technology Expert',
                 company: 'EMERA Privée (Subsidiary of Dokeos LMS)',
                 location: 'Casablanca, Morocco',
-                period: '2021 - Present',
+                period: '',
                 description: [
                     'Managed e-learning projects and provided client support',
                     'Integrated LMS with third-party systems',
@@ -312,7 +288,7 @@
                 titleFr: 'Chef de Projet E-learning et Expert en Technologie d\'Apprentissage',
                 companyFr: 'EMERA Privée (Filiale de Dokeos LMS)',
                 locationFr: 'Casablanca, Maroc',
-                periodFr: '2021 - Présent',
+                periodFr: '',
                 descriptionFr: [
                     'Gestion de projets e-learning et support client',
                     'Intégration de LMS avec des systèmes tiers',
@@ -323,8 +299,8 @@
             {
                 title: 'Freelance Instructional Designer',
                 company: 'Various Clients',
-                location: 'Remote',
-                period: '2019 - 2021',
+                location: '',
+                period: '2 years',
                 description: [
                     'Developed interactive e-learning modules using Articulate Rise',
                     'Managed client relationships and incorporated feedback',
@@ -333,8 +309,8 @@
                 ],
                 titleFr: 'Concepteur Pédagogique Freelance',
                 companyFr: 'Clients Divers',
-                locationFr: 'À distance',
-                periodFr: '2019 - 2021',
+                locationFr: '',
+                periodFr: '2 ans',
                 descriptionFr: [
                     'Développement de modules e-learning interactifs avec Articulate Rise',
                     'Gestion des relations clients et intégration des retours',
@@ -345,8 +321,8 @@
             {
                 title: 'Training Manager',
                 company: 'Tesselate',
-                location: 'Casablanca, Morocco',
-                period: '2018 - 2019',
+                location: '',
+                period: '6 months',
                 description: [
                     'Redesigned cybersecurity training',
                     'Implemented a new Learning Management System',
@@ -355,8 +331,8 @@
                 ],
                 titleFr: 'Responsable de Formation',
                 companyFr: 'Tesselate',
-                locationFr: 'Casablanca, Maroc',
-                periodFr: '2018 - 2019',
+                locationFr: '',
+                periodFr: '6 mois',
                 descriptionFr: [
                     'Refonte de la formation en cybersécurité',
                     'Mise en place d\'un nouveau Système de Gestion de l\'Apprentissage',
@@ -378,11 +354,8 @@
                 el.textContent = el.getAttribute(`data-${currentLanguage}`);
             });
             populateSkills();
-            populateSkillsAssessment();
             populateProjects();
             populateExperiences();
-            populateTestimonials();
-            populateCertifications();
         }
 
         function populateSkills() {
@@ -400,34 +373,6 @@
             });
         }
 
-        function populateSkillsAssessment() {
-            const skillsAssessmentGrid = document.getElementById('skillsAssessmentGrid');
-            skillsAssessmentGrid.innerHTML = '';
-            const assessments = [
-                { skill: 'Instructional Design', level: 95 },
-                { skill: 'E-Learning Development', level: 90 },
-                { skill: 'LMS Administration', level: 85 },
-                { skill: 'Project Management', level: 80 },
-                { skill: 'Gamification', level: 88 },
-                { skill: 'UX/UI Design', level: 75 }
-            ];
-            
-            assessments.forEach(assessment => {
-                const assessmentDiv = document.createElement('div');
-                assessmentDiv.className = 'mb-4';
-                assessmentDiv.innerHTML = `
-                    <div class="flex justify-between mb-1">
-                        <span class="text-base font-medium text-blue-300">${assessment.skill}</span>
-                        <span class="text-sm font-medium text-blue-300">${assessment.level}%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2.5">
-                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: ${assessment.level}%"></div>
-                    </div>
-                `;
-                skillsAssessmentGrid.appendChild(assessmentDiv);
-            });
-        }
-
         function populateProjects() {
             const projectsGrid = document.getElementById('projectsGrid');
             projectsGrid.innerHTML = '';
@@ -435,24 +380,12 @@
                 const projectDiv = document.createElement('div');
                 projectDiv.className = 'bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300';
                 projectDiv.innerHTML = `
-                    <img src="${project.image}" alt="${currentLanguage === 'en' ? project.title : project.titleFr}" class="w-full h-48 object-cover">
+                    <img src="${project.image}" alt="${currentLanguage === 'en' ? project.title : project.titleFr}" style="${project.imageStyle}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="font-bold text-xl mb-3 text-blue-300">${currentLanguage === 'en' ? project.title : project.titleFr}</h3>
-                        <p class="text-gray-400 mb-4">${currentLanguage === 'en' ? project.description : project.descriptionFr}</p>
-                        <div class="mb-4">
-                            <h4 class="font-semibold text-white mb-2">${currentLanguage === 'en' ? 'Technologies Used:' : 'Technologies Utilisées:'}</h4>
-                            <ul class="list-disc list-inside text-gray-400">
-                                ${project.technologies.map(tech => `<li>${tech}</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div class="mb-4">
-                            <h4 class="font-semibold text-white mb-2">${currentLanguage === 'en' ? 'Key Outcomes:' : 'Résultats Clés:'}</h4>
-                            <ul class="list-disc list-inside text-gray-400">
-                                ${project.outcomes.map(outcome => `<li>${outcome}</li>`).join('')}
-                            </ul>
-                        </div>
+                        <p class="text-gray-400 mb-6">${currentLanguage === 'en' ? project.description : project.descriptionFr}</p>
                         <button onclick="${project.action ? 'projects[' + projects.indexOf(project) + '].action()' : 'window.open(\'' + project.link + '\', \'_blank\')'}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition-colors duration-300">
-                            ${currentLanguage === 'en' ? 'View Project' : 'Voir le Projet'}
+                            ${project.title === 'GDPR Compliance eLearning Course' ? (currentLanguage === 'en' ? 'View SCORM Package' : 'Voir le Package SCORM') : (currentLanguage === 'en' ? 'View Project' : 'Voir le Projet')}
                         </button>
                     </div>
                 `;
@@ -469,53 +402,12 @@
                 expDiv.innerHTML = `
                     <h3 class="text-2xl font-bold mb-2 text-blue-300">${currentLanguage === 'en' ? exp.title : exp.titleFr}</h3>
                     <p class="text-lg mb-2">${currentLanguage === 'en' ? exp.company : exp.companyFr}</p>
-                    <p class="text-gray-400 mb-4">${currentLanguage === 'en' ? exp.location : exp.locationFr} | ${currentLanguage === 'en' ? exp.period : exp.periodFr}</p>
+                    <p class="text-gray-400 mb-4">${currentLanguage === 'en' ? exp.location : exp.locationFr} ${exp.period ? `| ${currentLanguage === 'en' ? exp.period : exp.periodFr}` : ''}</p>
                     <ul class="list-disc list-inside text-gray-300">
                         ${(currentLanguage === 'en' ? exp.description : exp.descriptionFr).map(item => `<li>${item}</li>`).join('')}
                     </ul>
                 `;
                 experienceList.appendChild(expDiv);
-            });
-        }
-
-        function populateTestimonials() {
-            const testimonialsGrid = document.getElementById('testimonialsGrid');
-            testimonialsGrid.innerHTML = '';
-            const testimonials = [
-                { name: 'John Doe', role: 'Project Manager at XYZ Corp', text: 'Youssef's instructional design skills transformed our training program. His innovative approach to e-learning has significantly improved our employee engagement and knowledge retention.' },
-                { name: 'Jane Smith', role: 'HR Director at ABC Inc', text: 'Working with Youssef was a game-changer for our L&D initiatives. His expertise in LMS administration and custom e-learning development helped us create a robust, user-friendly learning ecosystem.' }
-            ];
-            
-            testimonials.forEach(testimonial => {
-                const testimonialDiv = document.createElement('div');
-                testimonialDiv.className = 'bg-gray-800 p-6 rounded-lg shadow-lg';
-                testimonialDiv.innerHTML = `
-                    <p class="text-gray-300 mb-4">"${testimonial.text}"</p>
-                    <div class="font-bold text-blue-300">${testimonial.name}</div>
-                    <div class="text-sm text-gray-400">${testimonial.role}</div>
-                `;
-                testimonialsGrid.appendChild(testimonialDiv);
-            });
-        }
-
-               function populateCertifications() {
-            const certificationsGrid = document.getElementById('certificationsGrid');
-            certificationsGrid.innerHTML = '';
-            const certifications = [
-                { name: 'Certified E-Learning Professional', issuer: 'International E-Learning Association', year: '2022' },
-                { name: 'Articulate 360 Master', issuer: 'Articulate', year: '2021' },
-                { name: 'Certified Instructional Designer', issuer: 'Association for Talent Development', year: '2020' }
-            ];
-            
-            certifications.forEach(cert => {
-                const certDiv = document.createElement('div');
-                certDiv.className = 'bg-gray-800 p-6 rounded-lg shadow-lg';
-                certDiv.innerHTML = `
-                    <h3 class="font-bold text-xl mb-2 text-blue-300">${cert.name}</h3>
-                    <p class="text-gray-400">${cert.issuer}</p>
-                    <p class="text-sm text-gray-500">${cert.year}</p>
-                `;
-                certificationsGrid.appendChild(certDiv);
             });
         }
 
@@ -564,11 +456,8 @@
         // Initialize the page
         setActiveTab('about');
         populateSkills();
-        populateSkillsAssessment();
         populateProjects();
         populateExperiences();
-        populateTestimonials();
-        populateCertifications();
         updateLanguage();
     </script>
 </body>
