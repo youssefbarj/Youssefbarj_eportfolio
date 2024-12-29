@@ -1,14 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Background circle -->
-  <circle cx="16" cy="16" r="16" fill="#4a5568"/>
-  <!-- Letters -->
-  <text x="50%" y="50%" 
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="4" fill="#1a202c"/>
+  <!-- YB text -->
+  <text x="16" y="22" 
         font-family="Arial, sans-serif" 
         font-size="16"
         font-weight="bold"
-        fill="white"
-        text-anchor="middle"
-        dominant-baseline="central">
+        fill="#60a5fa"
+        text-anchor="middle">
     YB
   </text>
 </svg>
