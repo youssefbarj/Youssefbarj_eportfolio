@@ -66,7 +66,7 @@
 
     <main class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <section id="about" class="text-center animate-fadeInUp">
-            <img src="1691435719454.jpeg" alt="Youssef Barj Mug Shot" style="width:200px;height:200px;border-radius:50%" class="mx-auto mb-8 border-4 border-blue-400 animate-pulse">
+            <img src="image.png" alt="Youssef Barj Mug Shot" style="width:200px;height:200px;border-radius:50%" class="mx-auto mb-8 border-4 border-blue-400 animate-pulse">
             <h1 class="text-5xl font-bold mb-4">Youssef Barj</h1>
             <p class="text-2xl text-blue-300 mb-8" data-en="Innovative Instructional Designer & Digital Learning Engineer" data-fr="Concepteur Pédagogique Innovant & Ingénieur en Apprentissage Numérique">Innovative Instructional Designer & Digital Learning Engineer</p>
             <p class="max-w-2xl mx-auto text-gray-300 mb-12 text-lg" data-en="Passionate about creating engaging and effective learning experiences. With expertise in eLearning design, gamification, and LMS administration, I bring a unique blend of educational theory and technological innovation to every project." data-fr="Passionné par la création d'expériences d'apprentissage engageantes et efficaces. Avec une expertise en conception d'eLearning, gamification et administration de LMS, j'apporte un mélange unique de théorie éducative et d'innovation technologique à chaque projet.">
@@ -154,7 +154,7 @@
                     <a href="https://drive.google.com/uc?export=download&id=1FWMS75Y-pELNno5ZQgHpuGp5bqEI_xQg" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" data-en="English CV" data-fr="CV en anglais">
                         English CV
                     </a>
-                    <a href="https://drive.google.com/uc?export=download&id=1qaSBIgME6pyWligBEzg8U_-m98rWFFI9" target="_blank" rel="noopener noreferrer" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" data-en="French CV" data-fr="CV en français">
+                    <a href="https://drive.google.com/uc?export=download&id=18MsezDx7az15mfjO3A3VrcVRQQFDIJjW" target="_blank" rel="noopener noreferrer" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" data-en="French CV" data-fr="CV en français">
                         French CV
                     </a>
                     <button type="button" onclick="closeModal('cvModal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" data-en="Cancel" data-fr="Annuler">
@@ -235,18 +235,15 @@
                 titleFr: 'Menaces de Sécurité des Données : Hameçonnage',
                 descriptionFr: 'Cours eLearning sur la reconnaissance et l\'atténuation des tentatives d\'hameçonnage dans la communication par e-mail.'
             },
-          const courseData = {
-  title: 'GDPR Compliance eLearning Course',
-  description: 'Comprehensive SCORM package on General Data Protection Regulation (GDPR) compliance. This course covers key aspects including the role of Data Protection Officers, compliance requirements, implementation timeline, handling data breaches, and personal data management.',
-  image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-9hkTlxwnt3AGiZS8SUQehxvUkZmcAo.png',
-  imageStyle: '',
-  iframe: '<iframe src="https://coassemble.com/learn/CN9FB93I" width="100%" height="400px" frameborder="0" title="GDPR Compliance Course"></iframe>',
-  titleFr: 'Cours eLearning sur la Conformité au RGPD',
-  descriptionFr: 'Package SCORM complet sur la conformité au Règlement Général sur la Protection des Données (RGPD). Ce cours couvre les aspects clés, notamment le rôle des délégués à la protection des données, les exigences de conformité, le calendrier de mise en œuvre, la gestion des violations de données et la gestion des données personnelles.'
-};
-document.querySelector('.view-scorm-button').addEventListener('click', function() {
-    document.querySelector('.scorm-container').innerHTML = courseData.iframe;
-});
+            {
+                title: 'GDPR Compliance eLearning Course',
+                description: 'Comprehensive SCORM package on General Data Protection Regulation (GDPR) compliance. This course covers key aspects including the role of Data Protection Officers, compliance requirements, implementation timeline, handling data breaches, and personal data management.',
+                image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-9hkTlxwnt3AGiZS8SUQehxvUkZmcAo.png',
+                imageStyle: '',
+                link: 'https://coassemble.com/learn/CN9FB93I',
+                titleFr: 'Cours eLearning sur la Conformité au RGPD',
+                descriptionFr: 'Package SCORM complet sur la conformité au Règlement Général sur la Protection des Données (RGPD). Ce cours couvre les aspects clés, notamment le rôle des délégués à la protection des données, les exigences de conformité, le calendrier de mise en œuvre, la gestion des violations de données et la gestion des données personnelles.'
+            },
             {
                 title: 'Interactive Floor Plan for New Employee Onboarding',
                 description: 'An interactive floor plan that helps new employees navigate the office space. It features various rooms including conference areas, offices, and communal spaces. Users can click on rooms to learn more about each area.',
